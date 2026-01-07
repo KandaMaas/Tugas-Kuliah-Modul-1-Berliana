@@ -1,0 +1,7 @@
+{
+  "name": "Travel Planner AI (tugas kuliah)",
+  "description": "A helpful AI assistant that creates detailed, day-by-day travel itineraries based on your destination, dates, budget, and interests, using real-time information.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
