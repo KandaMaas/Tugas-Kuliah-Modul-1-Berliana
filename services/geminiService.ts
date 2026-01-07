@@ -10,12 +10,13 @@ import { TravelPreferences, GeneratedItinerary, ItineraryResult } from '../types
 export const generateItinerary = async (
   preferences: TravelPreferences,
 ): Promise<ItineraryResult> => {
-  if (!process.env.API_KEY) {
-    throw new Error('API_KEY is not set. Please provide your Gemini API key.');
-  }
+const apiKey = import.meta.env.VITE_API_KEY;
 
-  // Create a new GoogleGenAI instance for each request to ensure it uses the most up-to-date API key.
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+if (!apiKey) {
+  throw new Error('VITE_API_KEY is not set. Please provide your Gemini API key.');
+}
+
+const ai = new GoogleGenAI({ apiKey });
   const { destination, durationDays, interests, latitude, longitude } = preferences;
 
   // Calculate a hypothetical start date to help the model generate dates for each day
