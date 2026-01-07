@@ -10,10 +10,12 @@ import { TravelPreferences, GeneratedItinerary, ItineraryResult } from '../types
 export const generateItinerary = async (
   preferences: TravelPreferences,
 ): Promise<ItineraryResult> => {
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey =
+  import.meta?.env?.VITE_API_KEY ||
+  process.env.API_KEY;
 
 if (!apiKey) {
-  throw new Error('VITE_API_KEY is not set. Please provide your Gemini API key.');
+  throw new Error('API key is not set');
 }
 
 const ai = new GoogleGenAI({ apiKey });
